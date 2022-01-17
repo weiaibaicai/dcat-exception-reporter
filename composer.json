@@ -1,0 +1,32 @@
+{
+    "name": "weiaibaicai/dcat-exception-reporter",
+    "alias": "",
+    "description": "Dcat Admin Extension 异常报告扩展",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension", "dcat-exception-reporter"],
+    "homepage": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "weiaibaicai",
+            "email": "923108452@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "dcat/laravel-admin": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Weiaibaicai\\DcatExceptionReporter\\": "src/"
+        }
+    },
+    "extra": {
+        "dcat-admin": "Weiaibaicai\\DcatExceptionReporter\\DcatExceptionReporterServiceProvider",
+        "laravel": {
+            "providers": [
+                "Weiaibaicai\\DcatExceptionReporter\\DcatExceptionReporterServiceProvider"
+            ]
+        }
+    }
+}
