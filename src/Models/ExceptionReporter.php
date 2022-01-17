@@ -4,6 +4,8 @@ namespace Weiaibaicai\DcatExceptionReporter\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
+
 
 /**
  * Weiaibaicai\DcatExceptionReporter\Models\SystemException
@@ -27,6 +29,8 @@ use Illuminate\Support\Carbon;
  */
 class ExceptionReporter extends Model
 {
+    use HasDateTimeFormatter;
+
     public const METHOD_COLOR = [
         'GET'     => 'green',
         'POST'    => 'yellow',

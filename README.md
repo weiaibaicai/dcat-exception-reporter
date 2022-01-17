@@ -18,7 +18,7 @@
 #### 添加后台菜单
 后台菜单 -> 系统 -> 菜单 -> 新增，路径填写 `weiaibaicai/exception-reporters`
 
-#### 最后一步，触发异常
+#### 最后一步，触发
 打开 `app/Exceptions/Handler.php`文件, 在 `report` 方法中调用 `ExceptionReporterService::report()`方法
 ```php
 <?php
