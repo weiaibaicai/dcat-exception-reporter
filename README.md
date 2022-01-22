@@ -34,7 +34,7 @@ class Handler extends ExceptionHandler
     
     public function report($e)
     {
-        if ($this->shouldReport($e)) {
+        if (class_exists(ExceptionReporterService::class) &&  $this->shouldReport($e)) {
             ExceptionReporterService::report(request(), $e);
         }
         parent::report($e);
