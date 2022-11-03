@@ -8,6 +8,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Weiaibaicai\DcatExceptionReporter\Models\ExceptionReporter;
 use Weiaibaicai\DcatExceptionReporter\Tracer\Parser;
+use Weiaibaicai\DcatExceptionReporter\DcatExceptionReporterServiceProvider;
 
 class DcatExceptionReporterController extends AdminController
 {

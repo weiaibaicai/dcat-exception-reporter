@@ -26,19 +26,6 @@ class DcatExceptionReporterServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'weiaibaicai.exception-reporter');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'weiaibaicai.exception-reporter');
 
-        $this->app->booted(function () {
-            Admin::app()->routes(function ($router) {
-                $attributes = array_merge([
-                    'prefix'     => config('admin.route.prefix'),
-                    'middleware' => config('admin.route.middleware'),
-                ], $this->config('route', []));
-                $router->group($attributes, __DIR__ . '/Http/routes.php');
-            });
-
-//            Admin::requireAssets('@weiaibaicai.dcat-exception-reporter');
-
-        });
-
         parent::init();
     }
 

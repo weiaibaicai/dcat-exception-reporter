@@ -9,11 +9,16 @@
 #### composer 拉取代码
 `composer require weiaibaicai/dcat-exception-reporter`
 
-#### 执行迁移文件
-`php artisan migrate --path=vendor/weiaibaicai/dcat-exception-reporter/database/migrations`
-
 #### 启用插件
 后台菜单 -> 开发工具 -> 扩展 -> weiaibaicai.dcat-exception-reporter -> 升级 -> 启用
+
+#### 添加后台路由（routes.php）
+```php
+use Weiaibaicai\DcatExceptionReporter\Http\Controllers\DcatExceptionReporterController;
+use Illuminate\Support\Facades\Route;
+
+Route::resource('weiaibaicai/exception-reporters', DcatExceptionReporterController::class);
+```
 
 #### 添加后台菜单
 后台菜单 -> 系统 -> 菜单 -> 新增，路径填写 `weiaibaicai/exception-reporters`
@@ -49,7 +54,14 @@ class Handler extends ExceptionHandler
 
 #### 使用问题
 1. 如果怕数据量太大，可以定时执行命令`php artisan exception-reporter:clear`来清空一周以前的异常
-2. 迁移默认生成的数据表名为`exception_reporters`，也可以主动设置 `config('admin.extensions.dcat_exception_reporter.table')`的值来修改表明。这个值默认是没有的，主动添加一个即可
+2. 迁移默认生成的数据表名为`exception_reporters`，可以通过设置 `config('admin.extensions.dcat_exception_reporter.table')`的值来修改。如需配置，请在安装插件之前配置好
+3. 禁用扩展可以实现关闭记录异常，操作 后台菜单 -> 开发工具 -> 扩展 -> weiaibaicai.dcat-exception-reporter -> 禁用
+
+#### 升级说明 1.x -> 2.x
+
+1.升级理由：`1.x` 版本需要主动执行迁移，发布到生产环境时不方便
+2.变动内容：实现安装扩展自动执行迁移  + 不在提供预设好的后台路由
+2.升级操作：走一遍 '添加后台路由' 步骤即可
 
 #### 特别感谢
 1、感谢何总（old）的指导

@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Weiaibaicai\DcatExceptionReporter\Models\ExceptionReporter;
+use Dcat\Admin\Admin;
 
 class ExceptionReporterService
 {
@@ -39,6 +40,11 @@ class ExceptionReporterService
      */
     public static function report(Request $request, Throwable $exception)
     {
+        //当扩展不存在或禁用时，不再记录异常
+        if (!Admin::extension()->enabled('weiaibaicai.dcat-exception-reporter')) {
+            return;
+        }
+
         $reporter = new static($request);
         if (!in_array(get_class($exception), $reporter->whitelist) ) {
             return $reporter->reportException($exception);

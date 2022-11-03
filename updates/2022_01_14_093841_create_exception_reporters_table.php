@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateExceptionReportersTable extends Migration
 {
     /**
-     * 获取实际表名
+     * Get the actual table name
      *
      * @return string
      */
@@ -28,24 +28,30 @@ class CreateExceptionReportersTable extends Migration
      */
     public function up()
     {
+
         $table = $this->getFinalTable();
-        Schema::create($table, function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('type');
-            $table->string('code');
-            $table->string('message');
-            $table->string('file');
-            $table->integer('line');
-            $table->text('trace');
-            $table->string('method');
-            $table->string('path');
-            $table->text('query');
-            $table->text('body');
-            $table->text('cookies');
-            $table->text('headers');
-            $table->string('ip');
-            $table->timestamps();
-        });
+
+        if (! Schema::hasTable($table)) {
+            Schema::create($table, function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('type');
+                $table->string('code');
+                $table->string('message');
+                $table->string('file');
+                $table->integer('line');
+                $table->text('trace');
+                $table->string('method');
+                $table->string('path');
+                $table->text('query');
+                $table->text('body');
+                $table->text('cookies');
+                $table->text('headers');
+                $table->string('ip');
+                $table->timestamps();
+            });
+        }
+
+
     }
 
     /**
